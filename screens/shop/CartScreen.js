@@ -10,6 +10,8 @@ import Colors from '../../constants/Colors';
 
 const CartScreen = props => {
   const dispatch = useDispatch();
+  const orders = useSelector(state => state.orders.orders);
+
   const totalCartAmount = useSelector(state => state.cart.totalAmount);
   const items = useSelector(state => {
     const itemsDataArray = [];
@@ -37,7 +39,9 @@ const CartScreen = props => {
         </Text>
         <Button
           title="Order Now"
-          onPress={() => dispatch(addOrderAction(items, totalCartAmount))}
+          onPress={() => {
+            dispatch(addOrderAction({ items, totalCartAmount }));
+          }}
           disabled={items.length === 0}
         />
       </View>
@@ -63,6 +67,7 @@ const CartScreen = props => {
 
 const styles = StyleSheet.create({
   itemContainer: {
+    marginTop: 150,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-around',
@@ -79,5 +84,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   }
 });
+
+export const screenOptions = {
+  headerTitle: 'Your Cart'
+};
 
 export default CartScreen;

@@ -11,16 +11,17 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 
-import HeaderButton from '../../components/UI/HeaderButtonCustom';
-//import OrderItem from '../../components/shop/OrderItem';
+import HeaderButtonCustom from '../../components/UI/HeaderButtonCustom';
+import OrderItem from '../../components/shop/OrderItem';
 //import * as ordersActions from '../../store/actions/orders';
 import Colors from '../../constants/Colors';
 
 const OrdersScreen = props => {
   const [isLoading, setIsLoading] = useState(false);
 
-  const orders = useSelector(state => state.orders.orders);
-  const dispatch = useDispatch();
+  const ordersList = useSelector(state => state.orders.orders);
+
+  //const dispatch = useDispatch();
 
   // useEffect(() => {
   //   setIsLoading(true);
@@ -47,25 +48,24 @@ const OrdersScreen = props => {
 
   return (
     <FlatList
-      data={orders}
+      data={ordersList}
       keyExtractor={item => item.id}
-      renderItem={itemData => {
-        <Text>{itemData.item.totalAmount}</Text>;
-        /*<OrderItem
+      renderItem={itemData => (
+        <OrderItem
           amount={itemData.item.totalAmount}
           date={itemData.item.readableDate}
           items={itemData.item.items}
-       />*/
-      }}
+        />
+      )}
     />
   );
 };
 
 export const screenOptions = navData => {
   return {
-    headerTitle: 'Your Orders',
-    headerLeft: (
-      <HeaderButtons HeaderButtonComponent={HeaderButton}>
+    headerTitle: 'Orders',
+    headerLeft: () => (
+      <HeaderButtons HeaderButtonComponent={HeaderButtonCustom}>
         <Item
           title="Menu"
           iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}

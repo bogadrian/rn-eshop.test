@@ -6,7 +6,7 @@ import * as Font from 'expo-font';
 
 import store from './redux/root-reducer';
 
-import ProductsNavigator from './navigation/ShopNavigator';
+import AppNavigator from './navigation/ShopNavigator';
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -29,7 +29,7 @@ export default function App() {
   }
   return (
     <Provider store={store}>
-      <ProductsNavigator />
+      <AppNavigator />
     </Provider>
   );
 }

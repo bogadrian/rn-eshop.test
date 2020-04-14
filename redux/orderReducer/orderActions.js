@@ -2,9 +2,9 @@ export const addOrder = {
   ADD_ORDER: 'ADD_ORDER'
 };
 
-export const addOrderAction = (items, amount) => {
+export const addOrderAction = ({ items, totalCartAmount }) => {
   return {
     type: addOrder.ADD_ORDER,
-    orderData: { items: items, amount: amount }
+    payload: { items, totalCartAmount }
   };
 };

@@ -40,9 +40,9 @@ export const screenOptions = navData => {
     headerLeft: () => (
       <HeaderButtons HeaderButtonComponent={HeaderButtonCustom}>
         <Item
-          title="Cart"
+          title="Menu"
           iconName={Platform.OS === 'android' ? 'md-menu' : 'ios-menu'}
-          onPress={() => navData.navigation.navigate('Cart')}
+          onPress={() => navData.navigation.toggleDrawer()}
         />
       </HeaderButtons>
     ),
